@@ -26,7 +26,7 @@ MVTec Benchmark Server: [https://benchmark.mvtec.com/](https://benchmark.mvtec.c
 
 Challenge Website: [https://sites.google.com/view/vand30cvpr2025/challenge](https://sites.google.com/view/vand30cvpr2025/challenge)
 
-![winner](.\asserts\winner.png)
+![winner](./asserts/winner.png)
 
 
 ## 🎯Setup
