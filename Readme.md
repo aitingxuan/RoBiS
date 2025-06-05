@@ -1,4 +1,6 @@
-# ✨RoBiS: Robust Binary Segmentation for High-Resolution Industrial Images (VAND3.0 challenge)
+# ✨RoBiS: Robust Binary Segmentation for High-Resolution Industrial Images (*CVPR2025 VAND3.0 challenge track 1 2rd solution*)
+
+*---We release some code widely used in anomaly detection tasks, including cropping and merging tools for high-resolution images, adaptive binarization for continues anomaly maps, and refining the binary masks using SAM, etc*.
 
 Name(s):
 [Xurui Li](https://github.com/xrli-U)<sup>1</sup> | [Zhongsheng Jiang](https://github.com/FoundWind7)<sup>1</sup> | [Tingxuan Ai](https://aitingxuan.github.io/)<sup>1</sup> | [Yu Zhou](https://github.com/zhouyu-hust)<sup>1,2</sup>
@@ -11,16 +13,20 @@ Contact Information:
 
 Track: Adapt \& Detect---Robust Anomaly Detection in Real-World Applications
 
-### Technical report: [ResearchGate](https://www.researchgate.net/publication/392124350_RoBiS_Robust_Binary_Segmentation_for_High-Resolution_Industrial_Images) | [PDF](RoBiS.pdf)
+### Technical report: [ResearchGate](https://www.researchgate.net/publication/392124350_RoBiS_Robust_Binary_Segmentation_for_High-Resolution_Industrial_Images) | [arXiv](https://arxiv.org/pdf/2505.21152) | [PDF](RoBiS.pdf)
 
 
 ## 🧐Overview
 
-This repository is the official implementation of our solution **RoBiS** for the CVPR2025 VAND3.0 challenge Track 1.
+This repository is the official implementation of our **winner solution RoBiS** for the CVPR2025 VAND3.0 challenge Track 1.
+
+Our RoBiS combines the traditional *mean+3std* with the MEBin proposed in CVPR2025 [github link](https://github.com/HUST-SLOW/AnomalyNCD) to achieve adaptive binarization. This strategy enables our method not to manually determine different thresholds for each product.
 
 MVTec Benchmark Server: [https://benchmark.mvtec.com/](https://benchmark.mvtec.com/).
 
 Challenge Website: [https://sites.google.com/view/vand30cvpr2025/challenge](https://sites.google.com/view/vand30cvpr2025/challenge)
+
+![winner](.\asserts\winner.png)
 
 
 ## 🎯Setup
