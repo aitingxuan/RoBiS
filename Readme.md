@@ -11,54 +11,54 @@
 联系方式:
 **xrli\_plus@hust.edu.cn** | zsjiang@hust.edu.cn | tingxuanai@hust.edu.cn | yuzhou@hust.edu.cn
 
-Track: Adapt \& Detect---Robust Anomaly Detection in Real-World Applications
+赛道: 适应与检测——在现实世界的应用中实现鲁棒的异常检测
 
-### Technical report: [ResearchGate](https://www.researchgate.net/publication/392124350_RoBiS_Robust_Binary_Segmentation_for_High-Resolution_Industrial_Images) | [arXiv](https://arxiv.org/pdf/2505.21152) | [PDF](RoBiS.pdf)
+### 技术报告: [ResearchGate](https://www.researchgate.net/publication/392124350_RoBiS_Robust_Binary_Segmentation_for_High-Resolution_Industrial_Images) | [arXiv](https://arxiv.org/pdf/2505.21152) | [PDF](RoBiS.pdf)
 
 
-## 🧐Overview
+## 🧐概述
 
-This repository is the official implementation of our **winner solution RoBiS** for the CVPR2025 VAND3.0 challenge Track 1.
+这个项目是我们为CVPR 2025 VAND3.0挑战赛第一赛道所提出的**获奖解决方案RoBiS**的官方实现
 
-Our RoBiS combines the traditional *mean+3std* with the MEBin proposed in CVPR2025 [github link](https://github.com/HUST-SLOW/AnomalyNCD) to achieve adaptive binarization. This strategy enables our method not to manually determine different thresholds for each product.
+我们的RoBiS结合了传统的*均值加上3倍标准差* 与发表在CVPR2025的MEBin[github link](https://github.com/HUST-SLOW/AnomalyNCD)来实现自适应二值化。这种策略使得我们的方法无需为每个类别产品人工确定不同的阈值。
 
-MVTec Benchmark Server: [https://benchmark.mvtec.com/](https://benchmark.mvtec.com/).
+MVTec基准测试服务器: [https://benchmark.mvtec.com/](https://benchmark.mvtec.com/).
 
-Challenge Website: [https://sites.google.com/view/vand30cvpr2025/challenge](https://sites.google.com/view/vand30cvpr2025/challenge)
+挑战赛网址: [https://sites.google.com/view/vand30cvpr2025/challenge](https://sites.google.com/view/vand30cvpr2025/challenge)
 
 ![winner](./asserts/winner.png)
 
 
-## 🎯Setup
+## 🎯代码环境配置
 
-### Environment:
+### 环境:
 
 - Python 3.8
 - CUDA 11.7
 - PyTorch 2.0.1
 
-Clone the repository locally:
+使用如下命令克隆该项目到本地:
 
 ```
 git clone https://github.com/xrli-U/RoBiS.git
 ```
 
-Create virtual environment:
+创建虚拟环境:
 
 ```
 conda create --name RoBiS python=3.8
 conda activate RoBiS
 ```
 
-Install the required packages:
+安装依赖库:
 
 ```
 pip install torch==2.0.1 torchvision==0.15.2 torchaudio==2.0.2
 pip install -r requirements.txt
 ```
-## 👇Prepare Datasets
+## 👇数据集下载
 
-Download the [MVTec AD 2](https://arxiv.org/pdf/2503.21622) dataset through the official link ([web](https://www.mvtec.com/company/research/datasets/mvtec-ad-2))
+通过官方链接([web](https://www.mvtec.com/company/research/datasets/mvtec-ad-2))下载[MVTec AD 2](https://arxiv.org/pdf/2503.21622)数据集 
 
 Put the datasets in `./data` folder.
 
