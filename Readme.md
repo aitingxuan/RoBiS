@@ -82,7 +82,7 @@ bash download_weights.sh
 ```
 我们提供了两种方式运行我们的代码。
 
-### 一个bash脚本完成所有操作
+### 一个bash脚本完成所有步骤
 ```
 bash VAND2025_track1_MAD2_reproduce_final_result.sh
 ```
@@ -152,29 +152,29 @@ python merging.py --amap_savedir ./anomaly_map_results --test_type challenge
 
 **5.二值化**
 ```
-# Using MEBin and mean+3std to generate coarse binary masks.
+# 使用MEBin和均值加上3倍标准差生成初步二值化掩膜
 python binarization.py --amap_savedir ./anomaly_map_results --bin_savedir ./binary_map_results --test_type challenge
 
-# Using SAM to generate finer binary masks.
+# 使用SAM生成最终二值化掩膜
 CUDA_VISIBLE_DEVICES=0 python SAM-Finer.py --data_path ./data/mvtec_ad_2 --bin_savedir ./binary_map_results --test_type challenge
 ```
-Before running `SAM-Finer.py`, make sure that the pre-trained weights *(sam_b and sam_h)* of SAM are downloaded to the current directory (`bash download_weights.sh`).
+在运行`SAM-Finer.py`之前，请确保预训练的SAM权重*(sam_b和sam_h)*已下载到当前的路径(`bash download_weights.sh`)。
 
-Key arguments:
-- `--amap_savedir`: The directory that saves anomaly maps *(.tiff)*.
-- `--bin_savedir`: The directory that saves thresholded binary masks.
-- `--data_path`: The directory of the original dataset.
+关键参数如下:
+- `--amap_savedir`:保存异常图的路径*(.tiff)*。
+- `--bin_savedir`:保存经阈值处理的二值化掩膜的路径
+- `--data_path`:原数据集路径
 
-**6. Zip for evaluation**
-We transfer the continuous anomaly maps and thresholded binary masks to `./submission_folder` for compression and evaluation.
+**6.压缩以用作评估**
+我们将连续异常图和经过阈值处理的二值掩膜转移到`./submission_folder`以便于压缩和评估
 ```
 mkdir -p ./submission_folder
 cp -r ${amap_savedir}/anomaly_images ./submission_folder/
 cp -r ${bin_savedir}/anomaly_images_thresholded ./submission_folder/
 ```
-The final continuous anomaly maps could be download in [google drive](https://drive.google.com/file/d/1OqejveTgEuYr9obEUV3h3Vzq2HTp29ua/view?usp=sharing).
+最终连续异常图可在此下载[google drive](https://drive.google.com/file/d/1OqejveTgEuYr9obEUV3h3Vzq2HTp29ua/view?usp=sharing)。
 
-The final thresholded binary masks could be download in [google drive](https://drive.google.com/file/d/1ilMnxisuQOYnvllu1kUHaibkzHiHN_R-/view?usp=sharing).
+最终经阈值的二值化掩膜可在此下载[google drive](https://drive.google.com/file/d/1ilMnxisuQOYnvllu1kUHaibkzHiHN_R-/view?usp=sharing)。
 
 ## 🎖️结果
 
@@ -196,9 +196,9 @@ The final thresholded binary masks could be download in [google drive](https://d
 |    Mean     |    67.25    |   79.62   |   51.00   |      59.65      |      79.86      |      46.52      |
 
 
-## Thanks
+## 致谢
 
-Our repo is built on [INP-Former](https://github.com/luow23/INP-Former), thanks their clear and elegant code !
+我们的工作基于[INP-Former](https://github.com/luow23/INP-Former)，感谢他们清晰且优雅的代码!
 
 ## License
 RoBiS is released under the **MIT Licence**.
