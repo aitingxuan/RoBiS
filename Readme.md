@@ -60,7 +60,7 @@ pip install -r requirements.txt
 
 通过官方链接([web](https://www.mvtec.com/company/research/datasets/mvtec-ad-2))下载[MVTec AD 2](https://arxiv.org/pdf/2503.21622)数据集 
 
-Put the datasets in `./data` folder.
+把所有的数据集放在`./data`文件夹下。
 
 ```
 data
@@ -75,33 +75,33 @@ data
 |-----|--- ...
 ```
 
-## 💎Run RoBiS
-Before starting to run our RoBiS, execute the `download_weights.sh` script to download the pre-training weights.
+## 💎运行RoBiS
+在运行我们的RoBiS之前，执行`download_weights.sh`脚本以下载预训练权重。
 ```
 bash download_weights.sh
 ```
-We provide two ways to run our code.
+我们提供了两种方式运行我们的代码。
 
-### One bash for all operations
+### 一个bash脚本完成所有操作
 ```
 bash VAND2025_track1_MAD2_reproduce_final_result.sh
 ```
-You can run the above script for all steps in our method.
-The continuous anomaly maps and thresholded binary masks are stored in `./submission_folder` for evaluation.
-The final continuous anomaly maps could be download in [google drive](https://drive.google.com/file/d/1OqejveTgEuYr9obEUV3h3Vzq2HTp29ua/view?usp=sharing).
-The final thresholded binary masks could be download in [google drive](https://drive.google.com/file/d/1ilMnxisuQOYnvllu1kUHaibkzHiHN_R-/view?usp=sharing).
-For more detailed arguments of this script, please refer to the following *step by step*.
+你可以运行上述脚本以完成我们方法中的所有步骤。
+连续异常图和经过阈值处理的二值化掩膜存储在`./submission_folder`用于评估。
+最终的连续异常图可以在[google drive](https://drive.google.com/file/d/1OqejveTgEuYr9obEUV3h3Vzq2HTp29ua/view?usp=sharing)下载。
+最终的二值化掩膜可以在[google drive](https://drive.google.com/file/d/1ilMnxisuQOYnvllu1kUHaibkzHiHN_R-/view?usp=sharing)下载。
+有关该脚本更详细的参数，请参考下面的*逐步说明*.
 
 
-### Step by step
-**1. Pre-processing**
+### 逐步说明
+**1.预处理**
 ```
 python swin-cropping.py --data_path ./data/mvtec_ad_2 --save_path ./mvtec_ad_2_processed
 ```
-Please leave about 50GB for the pre-processed data.
+请预留约50GB空间储存预处理数据。
 
-Key arguments:
-- `--data_path`: The directory of the original dataset.
+关键参数如下:
+- `--data_path`:原始数据集路径
 - `--save_path`: The directory that saves the pre-processed dataset. This directory will be automatically created.
 
 **2. Model training**
