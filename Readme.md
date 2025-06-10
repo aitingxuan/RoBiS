@@ -1,14 +1,14 @@
-# ✨RoBiS: Robust Binary Segmentation for High-Resolution Industrial Images (*CVPR2025 VAND3.0 challenge 赛道1的第二名方法*)
+# ✨RoBiS: Robust Binary Segmentation for High-Resolution Industrial Images (*CVPR2025 VAND3.0 挑战赛赛道1的第二名方法*)
 
-*---We release some code widely used in anomaly detection tasks, including cropping and merging tools for high-resolution images, adaptive binarization for continues anomaly maps, and refining the binary masks using SAM, etc*.
+*---我们发布了可以在异常检测任务中广泛使用的代码，包括用于高分辨率图像的裁剪和合并的工具、连续异常图的自适应二值化工具，以及对二值掩码进行精修的SAM等*.
 
-Name(s):
-[Xurui Li](https://github.com/xrli-U)<sup>1</sup> | [Zhongsheng Jiang](https://github.com/FoundWind7)<sup>1</sup> | [Tingxuan Ai](https://aitingxuan.github.io/)<sup>1</sup> | [Yu Zhou](https://github.com/zhouyu-hust)<sup>1,2</sup>
+作者:
+[李煦蕤](https://github.com/xrli-U)<sup>1</sup> | [蒋中盛](https://github.com/FoundWind7)<sup>1</sup> | [艾廷轩](https://aitingxuan.github.io/)<sup>1</sup> | [周瑜](https://github.com/zhouyu-hust)<sup>1,2</sup>
 
-Affiliation(s):
-<sup>1</sup>Huazhong University of Science and Technology | <sup>2</sup>Wuhan JingCe Electronic Group Co.,LTD
+单位:
+<sup>1</sup>华中科技大学 | <sup>2</sup>武汉精测电子集团股份有限公司
 
-Contact Information:
+联系方式:
 **xrli\_plus@hust.edu.cn** | zsjiang@hust.edu.cn | tingxuanai@hust.edu.cn | yuzhou@hust.edu.cn
 
 Track: Adapt \& Detect---Robust Anomaly Detection in Real-World Applications
