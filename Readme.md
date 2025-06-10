@@ -102,55 +102,55 @@ python swin-cropping.py --data_path ./data/mvtec_ad_2 --save_path ./mvtec_ad_2_p
 
 关键参数如下:
 - `--data_path`:原始数据集路径
-- `--save_path`: The directory that saves the pre-processed dataset. This directory will be automatically created.
+- `--save_path`:保存预处理数据集的路径。该路径将自动创建。
 
-**2. Model training**
+**2.模型训练**
 ```
 CUDA_VISIBLE_DEVICES=0 python INP_Former_Single_Class.py \
 --data_path ./mvtec_ad_2_processed --save_dir ./saved_weights --phase train \
 --mvtecad2_class_list sheet_metal vial wallplugs walnuts can fabric fruit_jelly rice
 ```
-We use ViT-B-14 initialized with DINOv2-R pre-trained weights as the encoder.
-The pre-trained weights will be download automatically as `./backbones/weights/dinov2_vitb14_reg4_pretrain.pth`
+我们使用DINOv2-R初始化预训练权重的ViT-B-14作为编码器。
+预训练权重会自动下载到`./backbones/weights/dinov2_vitb14_reg4_pretrain.pth`
 
-To train the AD model under the default settings, please reserve at least 17GB of GPU memory.
-You can use different GPUs to train different categories to reduce time consumption.
-You can also download the trained checkpoints by this link [(google drive)](https://drive.google.com/drive/folders/1JvbEru6W1RxThjjiPJSONbO97j9_I6dN?usp=drive_link).
+如果要在默认设置下训练异常检测模型，请预留至少17GB的GPU内存。
+你可以使用不同的GPU来训练不同的类别，以减少时间消耗。
+你也可以通过这个链接下载训练好的权重[(google drive)](https://drive.google.com/drive/folders/1JvbEru6W1RxThjjiPJSONbO97j9_I6dN?usp=drive_link)。
 
-Key arguments:
-- `--data_path`: The directory of the pre-processed dataset.
-- `--save_dir`: The directory that saves model weights. This directory will be automatically created.
-- `mvtecad2_class_list`: The product categories of MVTec AD 2 dataset. Since our method trains one model for each category, different GPUs could be used to train different categories.
+关键参数如下:
+- `--data_path`:预处理数据集路径。
+- `--save_dir`:保存模型权重的路径。该路径将自动创建。
+- `mvtecad2_class_list`:MVTec AD 2数据集的所有类别。由于我们的方法为每个类别训练一个模型，因此可以使用不同的GPU来训练不同的类别，以减少时间消耗。
 
-**3. Model testing**
+**3.模型测试**
 ```
-# Testing for test_private
+# 在test_private上测试
 CUDA_VISIBLE_DEVICES=0 python INP_Former_Single_Class.py \
 --data_path ./mvtec_ad_2_processed --save_dir ./saved_weights --amap_savedir ./anomaly_map_results --phase test --test_type test_private \
 --mvtecad2_class_list sheet_metal vial wallplugs walnuts can fabric fruit_jelly rice
 
-# Testing for test_private_mixed
+# 在test_private_mixed上测试
 CUDA_VISIBLE_DEVICES=0 python INP_Former_Single_Class.py \
 --data_path ./mvtec_ad_2_processed --save_dir ./saved_weights --amap_savedir ./anomaly_map_results --phase test --test_type test_private_mixed \
 --mvtecad2_class_list sheet_metal vial wallplugs walnuts can fabric fruit_jelly rice
 ```
-Key arguments:
-- `--data_path`: The directory of the pre-processed dataset.
-- `--save_dir`: The directory that saves model weights.
-- `--amap_savedir`: The directory that saves anomaly maps *(.tiff)* of all sub-images. This directory will be automatically created.
-- `--test_type`: The test set of MVTec AD 2 dataset, setting *test_private* or *test_private_mixed*.
-- `mvtecad2_class_list`: The product categories of MVTec AD 2 dataset.
+关键参数如下:
+- `--data_path`:预处理数据集路径。
+- `--save_dir`:保存模型权重的路径 
+- `--amap_savedir`: 保存异常图*(.tiff)*的所有子图。该路径将自动创建。
+- `--test_type`:选择MVTec AD 2数据集的测试集，设置为*test_private*或*test_private_mixed*。
+- `mvtecad2_class_list`:MVTec AD 2数据集中的类别。
 
-**4. Post-processing**
+**4.后处理**
 ```
 python merging.py --amap_savedir ./anomaly_map_results --test_type challenge
 ```
-Merging the anomaly maps of sub-images into the corresponding original anomaly map.
+将子图像的异常图合并到对应的原始异常图中。
 
-Key arguments:
-- `--amap_savedir`: The directory that saves anomaly maps *(.tiff)* of all sub-images. After the merge, the anomaly maps of sub-images are automatically deleted.
+关键参数如下:
+- `--amap_savedir`: 保存所有子图像异常图*(.tiff)*的路径。合并完成后，子图像的异常图将自动删除。
 
-**5. Binarization**
+**5.二值化**
 ```
 # Using MEBin and mean+3std to generate coarse binary masks.
 python binarization.py --amap_savedir ./anomaly_map_results --bin_savedir ./binary_map_results --test_type challenge
@@ -176,9 +176,9 @@ The final continuous anomaly maps could be download in [google drive](https://dr
 
 The final thresholded binary masks could be download in [google drive](https://drive.google.com/file/d/1ilMnxisuQOYnvllu1kUHaibkzHiHN_R-/view?usp=sharing).
 
-## 🎖️Results
+## 🎖️结果
 
-All the results are calculated by the official leaderboard.
+所有结果均由官方排行榜计算得出。
 
 ### MVTec AD 2
 
