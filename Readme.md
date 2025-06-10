@@ -20,7 +20,7 @@
 
 这个项目是我们为CVPR 2025 VAND3.0挑战赛第一赛道所提出的**获奖解决方案RoBiS**的官方实现
 
-我们的RoBiS结合了传统的*均值加上3倍标准差* 与发表在CVPR2025的MEBin[github link](https://github.com/HUST-SLOW/AnomalyNCD)来实现自适应二值化。这种策略使得我们的方法无需为每个类别产品人工确定不同的阈值。
+我们的RoBiS结合了传统的*均值加上3倍标准差* 与发表在CVPR2025的MEBin模块[github link](https://github.com/HUST-SLOW/AnomalyNCD)来实现自适应二值化。这种策略使得我们的方法无需为每个类别产品人工确定不同的阈值。
 
 MVTec基准测试服务器: [https://benchmark.mvtec.com/](https://benchmark.mvtec.com/).
 
