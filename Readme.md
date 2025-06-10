@@ -13,7 +13,9 @@ Contact Information:
 
 Track: Adapt \& Detect---Robust Anomaly Detection in Real-World Applications
 
-### Technical report: [ResearchGate](https://www.researchgate.net/publication/392124350_RoBiS_Robust_Binary_Segmentation_for_High-Resolution_Industrial_Images) | [arXiv](https://arxiv.org/pdf/2505.21152) | [PDF](RoBiS.pdf)
+### Technical report: [ResearchGate](https://www.researchgate.net/publication/392124350_RoBiS_Robust_Binary_Segmentation_for_High-Resolution_Industrial_Images) | [arXiv](https://arxiv.org/pdf/2505.21152) | [PDF](RoBiS.pdf) | [PPT](RoBis_PPT.pdf)
+
+### README: English | [Chinese](Readme_CN.md)
 
 
 ## 🧐Overview
@@ -26,7 +28,7 @@ MVTec Benchmark Server: [https://benchmark.mvtec.com/](https://benchmark.mvtec.c
 
 Challenge Website: [https://sites.google.com/view/vand30cvpr2025/challenge](https://sites.google.com/view/vand30cvpr2025/challenge)
 
-![winner](./asserts/winner.png)
+![winner](.\asserts\winner.png)
 
 
 ## 🎯Setup
