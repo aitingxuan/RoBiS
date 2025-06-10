@@ -1,4 +1,4 @@
-# ✨RoBiS: Robust Binary Segmentation for High-Resolution Industrial Images (*CVPR2025 VAND3.0 challenge track 1 2rd solution*)
+# ✨RoBiS: Robust Binary Segmentation for High-Resolution Industrial Images (*CVPR2025 VAND3.0 挑战赛 赛道1的第二名*)
 
 *---We release some code widely used in anomaly detection tasks, including cropping and merging tools for high-resolution images, adaptive binarization for continues anomaly maps, and refining the binary masks using SAM, etc*.
 
