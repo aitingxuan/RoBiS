@@ -1,9 +1,6 @@
 import os
-import shutil
 import cv2
 import numpy as np
-import math
-import tifffile as tiff
 import argparse
 
 def generate_sliding_window_images(img_path, img_crop_path, window_size, desired_overlap):
@@ -15,44 +12,32 @@ def generate_sliding_window_images(img_path, img_crop_path, window_size, desired
     img = cv2.imread(img_path)
     
     height, width, _ = img.shape
-    if height < window_size or width < window_size:
-        pad_bottom = max(0, window_size - height)
-        pad_right = max(0, window_size - width)
-        img = cv2.copyMakeBorder(
-            img, 0, pad_bottom, 0, pad_right, cv2.BORDER_CONSTANT, value=[0, 0, 0]
-        )
     
-    y_steps = list(range(0, img.shape[0] - window_size, step_size))
-    x_steps = list(range(0, img.shape[1] - window_size, step_size))
+    num_steps_y = int(np.ceil((height - window_size) / step_size)) + 1
+    num_steps_x = int(np.ceil((width - window_size) / step_size)) + 1
     
-    if img.shape[0] % window_size != 0 or img.shape[1] % window_size != 0:
-        padded_height = math.ceil(img.shape[0] / window_size) * window_size
-        padded_width = math.ceil(img.shape[1] / window_size) * window_size
-        pad_bottom = padded_height - img.shape[0]
-        pad_right = padded_width - img.shape[1]
-        img = cv2.copyMakeBorder(
-            img, 0, pad_bottom, 0, pad_right, cv2.BORDER_CONSTANT, value=[0, 0, 0]
-        )
-    y_steps = list(range(0, img.shape[0] - window_size + 1, step_size))
-    x_steps = list(range(0, img.shape[1] - window_size + 1, step_size))
-
+    y_steps = [i * step_size for i in range(num_steps_y)]
+    x_steps = [i * step_size for i in range(num_steps_x)]
+    
     count_y = 0
     for y in y_steps:
         count_x = 0
         for x in x_steps:
-            is_retained = True
             window_x1 = x
             window_y1 = y
             window_x2 = x + window_size
             window_y2 = y + window_size
+            window = img[window_y1:window_y2, window_x1:window_x2]
             
-            if is_retained:
-                window = img[window_y1:window_y2, window_x1:window_x2]
-                file_path = os.path.join(img_crop_path, f"{img_name}_{count_y}{count_x}.png")
-                cv2.imwrite(file_path, window)
-                count_x += 1
-        count_y += 1
+            if window.shape[0] < window_size or window.shape[1] < window_size:
+                padded_window = np.zeros((window_size, window_size, 3), dtype=np.uint8)
+                padded_window[:window.shape[0], :window.shape[1]] = window
+                window = padded_window
 
+            file_path = os.path.join(img_crop_path, f"{img_name}_{count_y}{count_x}.png")
+            cv2.imwrite(file_path, window)
+            count_x += 1
+        count_y += 1
 
 def process_images(img_files, img_dir, crop_dir, window_size, desired_overlap):
     if not os.path.exists(crop_dir):
@@ -62,7 +47,6 @@ def process_images(img_files, img_dir, crop_dir, window_size, desired_overlap):
         img_name = img_file.split(".")[0]
         img_path = os.path.join(img_dir, img_file)
         generate_sliding_window_images(img_path, crop_dir, window_size, desired_overlap)
-
 
 def crop(path, crop_path, window_size, desired_overlap):
     classname_list = ['sheet_metal', 'vial', 'wallplugs', 'walnuts', 'can', 'fabric', 'fruit_jelly', 'rice']
@@ -93,7 +77,6 @@ def crop(path, crop_path, window_size, desired_overlap):
                         img_files = os.listdir(label_path)
                         process_images(img_files, label_path, crop_path_2, window_size, desired_overlap)
         print(f"{ct} finished.")
-
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='')
